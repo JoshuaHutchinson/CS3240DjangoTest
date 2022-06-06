@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="">
+    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">    
+    
+<head>
+	<meta charset="utf-8">
+	<title>Poll Results</title>
+	<meta name="author" content="Your Name">
+	<meta name="description" content="Example description">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="">
+	<link rel="icon" type="image/x-icon" href=""/>
+</head>
+
+<body style="background-image:url('https://image.myanimelist.net/ui/BQM6jEZ-UJLgGUuvrNkYUE1pzujE8arG3ShoeffEGDoOhXrArAUhTh3d-fCR947V7L0joulupQEG-mMnDhb6BQ'); background-size:cover">
+    
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/polls/home/">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/polls/">Polls<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/deepthoughts/list">Deep Thoughts</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/admin/">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <br>
+    
+    <h1 style="text-align:center; color:white">Results</h1>
+    
+    <br><br>
+    
+    <div class=container-fluid style="background-image:url('https://c.tenor.com/ZBmWSm5CIRkAAAAC/democracy-palpatine.gif'); background-position: center; background-size: cover; padding:2%; width: 50%; opacity: 0.9">
+    
+        <h1 style="color:white">{{ question.question_text }}</h1>
+
+        <ul>
+        {% for choice in question.choice_set.all %}
+            <li style="color:white">{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+        {% endfor %}
+        </ul>
+
+        <a href="{% url 'polls:detail' question.id %}" style="color:white">Vote again?</a>
+    
+    </div>
+    
+    <br><br>
+    
+    <div style="text-align: center">
+        <a href="/polls/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="opacity: 0.9">Back to list</a>
+    </div>
+    
+    <footer style="text-align:center; color:white; position:fixed; bottom:0; width:100%">Website made using django and bootstrap5 by Joshua Hutchinson, 2021</footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>    
+
+</body>
+
+</html>

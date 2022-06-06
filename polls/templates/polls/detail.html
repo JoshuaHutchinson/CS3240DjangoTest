@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+    
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+<head>
+	<meta charset="utf-8">
+	<title>Vote</title>
+	<meta name="author" content="Your Name">
+	<meta name="description" content="Example description">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="">
+	<link rel="icon" type="image/x-icon" href=""/>
+</head>
+
+<body style="background-image:url('https://image.myanimelist.net/ui/BQM6jEZ-UJLgGUuvrNkYUE1pzujE8arG3ShoeffEGDoOhXrArAUhTh3d-fCR947V7L0joulupQEG-mMnDhb6BQ'); background-size:cover">
+	
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/polls/home/">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="/polls/">Polls<span class="sr-only"></span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/polls/deepthoughts/list">Deep Thoughts</a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/admin/">Admin</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    
+    <br>
+    
+    <h1 style="text-align:center; color:white">Vote</h1>
+    
+    <br><br>
+    
+    <div class="container-fluid" style="width:50%; background-image:url('https://media2.giphy.com/media/2dK0W3oUksQk0Xz8OK/giphy.gif'); background-size:cover; background-position: center; padding:2%; color:white; opacity: 0.9">
+    
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        <fieldset>
+            <legend><h1>{{ question.question_text }}</h1></legend>
+            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+            {% for choice in question.choice_set.all %}
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+            {% endfor %}
+        </fieldset>
+        <input type="submit" value="Vote">
+        </form>
+    
+    </div>
+    
+    <br><br>
+    
+    <div style="text-align: center">
+        <a href="/polls/" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true" style="opacity: 0.9">Back to list</a>
+    </div>
+    
+    <footer style="text-align:center; color:white; position:fixed; bottom:0; width:100%">Website made using django and bootstrap5 by Joshua Hutchinson, 2021</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>    
+    
+</body>
+
+</html>
